@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-pod
+spec:
+  containers:
+    - image: redis:alpine
+      name:  eks-container
+      volumeMounts:
+      - mountPath: "/data/redis"
+        name: redis
+  volumes:
+    - name: redis
+      awsElasticBlockStore:
+        volumeID: "vol-09ba273a7312120ac"
+        fsType: ext4
